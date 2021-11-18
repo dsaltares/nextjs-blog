@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
+import { getSortedPostsData, PostData } from '../lib/posts'
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -16,7 +16,11 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default function Home({ allPostsData }) {
+interface HomeProps {
+  allPostsData: PostData []
+}
+
+export default function Home({ allPostsData }: HomeProps) {
   return (
     <Layout home>
       <Head>
