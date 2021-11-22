@@ -6,6 +6,7 @@
     "start": "next start",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
+    "test": "jest components lib pages",
     "test:integration": "yarn docker:up && sleep 1 && prisma migrate deploy && jest --runInBand tests-integration && yarn docker:down",
     "test:integration:local": "prisma migrate deploy && jest --runInBand --watch tests-integration",
     "lint": "next lint && yarn prettier --check .",
@@ -23,6 +24,7 @@
     "remark-html": "13.0.2"
   },
   "devDependencies": {
+    "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
