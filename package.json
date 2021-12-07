@@ -3,20 +3,38 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "test": "jest components lib pages",
+    "test:integration": "yarn docker:up && sleep 1 && prisma migrate deploy && jest --runInBand tests-integration && yarn docker:down",
+    "test:integration:local": "prisma migrate deploy && jest --runInBand --watch tests-integration",
+    "lint": "next lint && yarn prettier --check .",
+    "fix": "next lint --fix . && yarn prettier --write ."
   },
   "dependencies": {
+    "@prisma/client": "^3.5.0",
     "date-fns": "^2.25.0",
     "gray-matter": "^4.0.3",
     "next": "latest",
+    "prisma": "^3.5.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "remark": "13.0.0",
     "remark-html": "13.0.2"
   },
   "devDependencies": {
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "12.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.3.1",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.5.2"
   }
 }
